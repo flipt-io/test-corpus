@@ -1,0 +1,196 @@
+{
+    "VARIANT": [
+        {
+            "request": {
+                "namespace_key": "default",
+                "flag_key": "flag_variant",
+                "entity_id": "some-fixed-entity-id",
+                "context": {
+                    "in_segment": "segment1"
+                }
+            },
+            "expectation":{
+                "match": true,
+                "flagKey": "flag_variant",
+                "variantKey": "variant1",
+                "segmentKeys": [
+                    "segment1"
+                ],
+                "variantAttachment": "",
+                "timestamp": "1970-01-01T00:00:00.000000Z",
+                "requestDurationMillis": 1.00,
+                "reason": "MATCH_EVALUATION_REASON"
+            }
+        },
+        {
+            "request": {
+                "namespace_key": "default",
+                "flag_key": "flag_variant_and_segments",
+                "entity_id": "some-fixed-entity-id",
+                "context": {
+                    "in_segment": "segment1",
+                    "anding": "segment"
+                }
+            },
+            "expectation":{
+                "match": true,
+                "flagKey": "flag_variant_and_segments",
+                "variantKey": "variant1",
+                "segmentKeys": [
+                    "segment1",
+                    "segment_anding"
+                ],
+                "variantAttachment": "",
+                "timestamp": "1970-01-01T00:00:00.000000Z",
+                "requestDurationMillis": 1.00,
+                "reason": "MATCH_EVALUATION_REASON"
+            }
+        },
+        {
+            "request": {
+                "namespace_key": "default",
+                "flag_key": "flag_using_entity_id",
+                "entity_id": "user@flipt.io",
+                "context": {}
+            },
+            "expectation":{
+                "match": true,
+                "flagKey": "flag_using_entity_id",
+                "variantKey": "variant1",
+                "segmentKeys": [
+                    "segment_entity_id"
+                ],
+                "variantAttachment": "",
+                "timestamp": "1970-01-01T00:00:00.000000Z",
+                "requestDurationMillis": 1.00,
+                "reason": "MATCH_EVALUATION_REASON"
+            }
+        },
+        {
+            "request": {
+                "namespace_key": "default",
+                "flag_key": "flag_disabled",
+                "entity_id": "some-fixed-entity-id",
+                "context": {}
+            },
+            "expectation":{
+                "match": false,
+                "flagKey": "flag_disabled",
+                "variantKey": "",
+                "segmentKeys": [],
+                "variantAttachment": "",
+                "timestamp": "1970-01-01T00:00:00.000000Z",
+                "requestDurationMillis": 1.00,
+                "reason": "FLAG_DISABLED_EVALUATION_REASON"
+            }
+        }
+    ],
+    "BOOLEAN": [
+        {
+            "request": {
+                "namespace_key": "default",
+                "flag_key": "flag_boolean",
+                "entity_id": "some-fixed-entity-id",
+                "context": {
+                    "in_segment": "segment1"
+                }
+            },
+            "expectation":{
+                "enabled": true,
+                "flagKey": "flag_boolean",
+                "requestId": "2576d568-234c-46c4-bda5-ae6ebe0fdd52",
+                "timestamp": "1970-01-01T00:00:00.000000Z",
+                "requestDurationMillis": 1.00,
+                "reason": "MATCH_EVALUATION_REASON"
+            }
+        },
+        {
+            "request": {
+                "namespace_key": "default",
+                "flag_key": "flag_boolean_and_segments",
+                "entity_id": "some-fixed-entity-id",
+                "context": {
+                    "in_segment": "segment1",
+                    "anding": "segment"
+                }
+            },
+            "expectation":{
+                "enabled": true,
+                "flagKey": "flag_boolean_and_segments",
+                "requestId": "",
+                "timestamp": "1970-01-01T00:00:00.000000Z",
+                "requestDurationMillis": 1.00,
+                "reason": "MATCH_EVALUATION_REASON"
+            }
+        },
+        {
+            "request": {
+                "namespace_key": "default",
+                "flag_key": "flag_boolean_no_constraints",
+                "entity_id": "some-fixed-entity-id",
+                "context": {}
+            },
+            "expectation":{
+                "enabled": true,
+                "flagKey": "flag_boolean_no_constraints",
+                "requestId": "",
+                "timestamp": "1970-01-01T00:00:00.000000Z",
+                "requestDurationMillis": 1.00,
+                "reason": "MATCH_EVALUATION_REASON"
+            }
+        }
+    ],
+    "BATCH": [
+        {
+            "request": [
+                {
+                    "namespace_key": "default",
+                    "flag_key": "flag_variant",
+                    "entity_id": "some-fixed-entity-id",
+                    "context": {
+                        "in_segment": "segment1"
+                    }
+                },
+                {
+                    "namespace_key": "default",
+                    "flag_key": "flag_boolean",
+                    "entity_id": "some-fixed-entity-id",
+                    "context": {
+                        "in_segment": "segment1"
+                    }
+                }
+            ],
+            "expectation": {
+                "responses": [
+                    {
+                        "type": "VARIANT_EVALUATION_RESPONSE_TYPE",
+                        "variantResponse": {
+                            "match": true,
+                            "flagKey": "flag_variant",
+                            "variantKey": "variant1",
+                            "segmentKeys": [
+                                "segment1"
+                            ],
+                            "variantAttachment": "",
+                            "timestamp": "1970-01-01T00:00:00.000000Z",
+                            "requestDurationMillis": 1.00,
+                            "reason": "MATCH_EVALUATION_REASON"
+                        } 
+                    },
+                    {
+                        "type": "BOOLEAN_EVALUATION_RESPONSE_TYPE",
+                        "booleanResponse": {
+                            "enabled": true,
+                            "flagKey": "flag_boolean_no_constraints",
+                            "requestId": "",
+                            "timestamp": "1970-01-01T00:00:00.000000Z",
+                            "requestDurationMillis": 1.00,
+                            "reason": "MATCH_EVALUATION_REASON"
+                        }
+                    }
+                ],
+                "requestDurationMillis": 1.00
+            }
+        }
+    ]
+}

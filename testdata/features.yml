@@ -1,0 +1,165 @@
+version: "1.2"
+namespace: default
+flags:
+- key: flag_variant
+  name: FLAG_VARIANT
+  type: VARIANT_FLAG_TYPE
+  description: Some Description
+  enabled: true
+  variants:
+  - key: variant1
+    name: VARIANT1
+  - key: variant2
+    name: VARIANT2
+  rules:
+  - segment: segment1
+    distributions:
+    - variant: variant1
+      rollout: 50
+    - variant: variant2
+      rollout: 50
+- key: flag_variant_and_segments
+  name: FLAG_VARIANT_AND_SEGMENTS
+  type: VARIANT_FLAG_TYPE
+  description: And segments for variant flags
+  enabled: true
+  variants:
+  - key: variant1
+    name: VARIANT1
+  - key: variant_002
+    name: VARIANT_002
+  rules:
+  - segment:
+      keys:
+      - segment1
+      - segment_anding
+      operator: AND_SEGMENT_OPERATOR
+    distributions:
+    - variant: variant1
+      rollout: 50
+    - variant: variant_002
+      rollout: 50
+- key: flag_boolean
+  name: FLAG_BOOLEAN
+  type: BOOLEAN_FLAG_TYPE
+  description: Boolean Flag Description
+  enabled: false
+  rollouts:
+  - description: enabled for segment1
+    segment:
+      key: segment1
+      value: true
+  - description: disabled for segment2
+    segment:
+      key: segment2
+  - description: enabled for segment3
+    segment:
+      key: segment3
+      value: true
+  - description: disabled for segment4
+    segment:
+      key: segment4
+  - description: enabled for 50%
+    threshold:
+      percentage: 50
+      value: true
+- key: flag_boolean_and_segments
+  name: FLAG_BOOLEAN_AND_SEGMENTS
+  type: BOOLEAN_FLAG_TYPE
+  description: And segments for boolean flags
+  enabled: false
+  rollouts:
+  - description: enabled for segment1
+    segment:
+      keys:
+      - segment1
+      - segment_anding
+      operator: AND_SEGMENT_OPERATOR
+      value: true
+- key: flag_disabled
+  name: FLAG_DISABLED
+  type: VARIANT_FLAG_TYPE
+  description: Disabled Flag Description
+  enabled: false
+- key: flag_boolean_no_constraints
+  name: FLAG_NO_CONSTRAINTS
+  type: BOOLEAN_FLAG_TYPE
+  description: Flag Boolean no segment constraints
+  enabled: false
+  rollouts:
+  - description: enabled for segment_no_constraints
+    segment:
+      key: segment_no_constraints
+      value: true
+- key: flag_using_entity_id
+  name: FLAG_USING_ENTITY_ID
+  type: VARIANT_FLAG_TYPE
+  description: Flag using entity id
+  enabled: true
+  variants:
+  - key: variant1
+    name: VARIANT1
+  rules:
+  - segment: segment_entity_id
+    distributions:
+    - variant: variant1
+      rollout: 100
+segments:
+- key: segment1
+  name: SEGMENT1
+  description: Some Segment Description
+  constraints:
+  - type: STRING_COMPARISON_TYPE
+    property: in_segment
+    operator: eq
+    value: segment1
+  match_type: ALL_MATCH_TYPE
+- key: segment2
+  name: SEGMENT2
+  description: Some Segment Description
+  constraints:
+  - type: STRING_COMPARISON_TYPE
+    property: in_segment
+    operator: eq
+    value: segment2
+  match_type: ALL_MATCH_TYPE
+- key: segment3
+  name: SEGMENT3
+  description: Some Segment Description
+  constraints:
+  - type: STRING_COMPARISON_TYPE
+    property: in_segment
+    operator: eq
+    value: segment3
+  match_type: ALL_MATCH_TYPE
+- key: segment4
+  name: SEGMENT4
+  description: Some Segment Description
+  constraints:
+  - type: STRING_COMPARISON_TYPE
+    property: in_segment
+    operator: eq
+    value: segment4
+  match_type: ALL_MATCH_TYPE
+- key: segment_no_constraints
+  name: SEGMENT_NO_CONSTRAINTS
+  description: Some Segment Description
+  match_type: ALL_MATCH_TYPE
+- key: segment_anding
+  name: SEGMENT_ANDING
+  description: Some Segment Description
+  constraints:
+  - type: STRING_COMPARISON_TYPE
+    property: anding
+    operator: eq
+    value: segment
+  match_type: ALL_MATCH_TYPE
+- key: segment_entity_id
+  name: SEGMENT_ENTITY_ID
+  description: Some Segment Description
+  constraints:
+  - type: ENTITY_ID_COMPARISON_TYPE
+    property: entity
+    operator: eq
+    value: user@flipt.io
+  match_type: ALL_MATCH_TYPE
