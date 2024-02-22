@@ -26,8 +26,8 @@ flags:
   variants:
   - key: variant1
     name: VARIANT1
-  - key: variant_002
-    name: VARIANT_002
+  - key: variant2
+    name: VARIANT2
   rules:
   - segment:
       keys:
@@ -37,7 +37,7 @@ flags:
     distributions:
     - variant: variant1
       rollout: 50
-    - variant: variant_002
+    - variant: variant2
       rollout: 50
 - key: flag_boolean
   name: FLAG_BOOLEAN

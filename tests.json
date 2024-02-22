@@ -35,7 +35,7 @@
             "expectation":{
                 "match": true,
                 "flagKey": "flag_variant_and_segments",
-                "variantKey": "variant1",
+                "variantKey": "variant2",
                 "segmentKeys": [
                     "segment1",
                     "segment_anding"
