@@ -6,7 +6,7 @@
                 "flag_key": "flag_variant",
                 "entity_id": "some-fixed-entity-id",
                 "context": {
-                    "in_segment": "segment1"
+                    "segment1": "segment1"
                 }
             },
             "expectation":{
@@ -29,7 +29,7 @@
                 "flag_key": "flag_variant_and_segments",
                 "entity_id": "some-fixed-entity-id",
                 "context": {
-                    "in_segment": "segment1",
+                    "segment1": "segment1",
                     "anding": "segment"
                 }
             },
@@ -96,7 +96,7 @@
                 "flag_key": "flag_boolean",
                 "entity_id": "some-fixed-entity-id",
                 "context": {
-                    "in_segment": "segment1"
+                    "segment1": "segment1"
                 }
             },
             "expectation":{
@@ -114,7 +114,7 @@
                 "flag_key": "flag_boolean_and_segments",
                 "entity_id": "some-fixed-entity-id",
                 "context": {
-                    "in_segment": "segment1",
+                    "segment1": "segment1",
                     "anding": "segment"
                 }
             },
@@ -152,7 +152,7 @@
                     "flag_key": "flag_variant",
                     "entity_id": "some-fixed-entity-id",
                     "context": {
-                        "in_segment": "segment1"
+                        "segment1": "segment1"
                     }
                 },
                 {
@@ -160,7 +160,7 @@
                     "flag_key": "flag_boolean",
                     "entity_id": "some-fixed-entity-id",
                     "context": {
-                        "in_segment": "segment1"
+                        "segment1": "segment1"
                     }
                 }
             ],
